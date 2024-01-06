@@ -15,14 +15,7 @@
         }
     ],
     "require": {
-        "google/apiclient": "^2.15.0"
-    },
-    "scripts": {
-        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
-    },
-    "extra": {
-        "google/apiclient-services": [
-            "Indexing"
-        ]
+        "firebase/php-jwt": "^6.10",
+        "guzzlehttp/guzzle": "^7.8"
     }
 }
