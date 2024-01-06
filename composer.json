@@ -1,0 +1,28 @@
+{
+    "name": "dllpl/google-fast-indexing",
+    "description": "Пакет PHP предназначенный для быстрой индексации страниц вашего сайта в поиске Google.",
+    "type": "library",
+    "license": "GNU Affero General Public License v3.0",
+    "autoload": {
+        "psr-4": {
+            "Dllpl\\GoogleFastIndexing\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nikita Iv (github.com/dllpl)",
+            "email": "nick.iv.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "google/apiclient": "^2.15.0"
+    },
+    "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+    },
+    "extra": {
+        "google/apiclient-services": [
+            "Indexing"
+        ]
+    }
+}
