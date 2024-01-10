@@ -4,6 +4,7 @@ namespace Dllpl\Google;
 
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 final class FastIndexing
 {
@@ -57,9 +58,9 @@ final class FastIndexing
             ]);
 
             return $response->getBody()->getContents();
-        } catch (\Exception $exception) {
+        } catch (ClientException $exception) {
             return throw new \Exception([
-                'response' => $response->getBody()->getContents(),
+                'response' => $exception->getResponse()->getBody()->getContents(),
                 'exception' => $exception->getMessage()
             ]);
         }

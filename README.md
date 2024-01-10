@@ -4,11 +4,20 @@
 *  **php: ^7.4 || ^8.0**
 ## Установка
 ```shell
-composer required dllpl/google-fast-indexing
+composer require dllpl/google-fast-indexing
 ```
 ## Вызов
 ```php
-$result = new GoogleFastIndexing('./storage/service_account.json'); // json файл полученний в ЛК Google
+use Dllpl\Google\FastIndexing;
+
+// путь до .json файла полученного в ЛК Google
+$fast_indexing = new FastIndexing('service_account.json'); 
+
+// путь до .txt файла содержащего url-адреса для отправки на индексацию
+$result = $fast_indexing->send('url.txt'); 
+
+// результат отправки по каждому адресу
+echo $result;
 ```
 
 
