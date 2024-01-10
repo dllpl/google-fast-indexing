@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Dllpl\\Google\\FastIndexing\\": "src/"
+            "Dllpl\\Google\\": "src/"
         }
     },
     "authors": [

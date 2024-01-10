@@ -1,6 +1,6 @@
 <?php
 
-namespace Dllpl\Google\FastIndexing;
+namespace Dllpl\Google;
 
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
