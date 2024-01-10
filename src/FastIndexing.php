@@ -58,7 +58,10 @@ final class FastIndexing
 
             return $response->getBody()->getContents();
         } catch (\Exception $exception) {
-            return throw new \Exception($exception->getMessage());
+            return throw new \Exception([
+                'response' => $response->getBody()->getContents(),
+                'exception' => $exception->getMessage()
+            ]);
         }
     }
 
