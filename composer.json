@@ -2,7 +2,7 @@
     "name": "dllpl/google-fast-indexing",
     "description": "Пакет PHP предназначенный для быстрой индексации страниц вашего сайта в поиске Google.",
     "type": "library",
-    "license": "GNU Affero General Public License v3.0",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Dllpl\\Google\\FastIndexing\\": "src/"
