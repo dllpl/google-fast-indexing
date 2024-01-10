@@ -1,11 +1,11 @@
 <?php
 
-namespace dllpl;
+namespace Dllpl\Google\FastIndexing;
 
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
 
-final class GoogleFastIndexing
+final class FastIndexing
 {
     /** @var Client  */
     private Client $client;
@@ -15,19 +15,19 @@ final class GoogleFastIndexing
 
     /**
      * @param string $keyFile json файл из личного аккаунта разработчика Google
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(string $keyFile)
     {
-        $this->jwt = $this->makeJWT($keyFile);
         $this->client = new Client();
+        return $this->jwt = $this->makeJWT($keyFile);
     }
 
     /**
      * @param string $batchFile
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws Exception
+     * @throws \Exception
      */
     public function send(string $batchFile): string
     {
@@ -58,14 +58,14 @@ final class GoogleFastIndexing
 
             return $response->getBody()->getContents();
         } catch (\Exception $exception) {
-            return throw new Exception($exception->getMessage());
+            return throw new \Exception($exception->getMessage());
         }
     }
 
     /**
      * @param string $keyFile
      * @return string
-     * @throws Exception
+     * @throws \Exception
      */
     private function makeJWT(string $keyFile): string
     {
@@ -81,10 +81,10 @@ final class GoogleFastIndexing
                     'iat' => time(),
                 ], $key['private_key'], 'RS256');
             } catch (\Exception $exception) {
-                return throw new Exception($exception->getMessage());
+                return throw new \Exception($exception->getMessage());
             }
         } else {
-            return throw new Exception('Отсутствует обязательное поле client_email или private_key');
+            return throw new \Exception('Отсутствует обязательное поле client_email или private_key');
         }
     }
 }
