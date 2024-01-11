@@ -29,6 +29,7 @@ final class FastIndexing
         $this->postBody = new \Google_Service_Indexing_UrlNotification();
 
     }
+
     /**
      * @param string $batchFile
      * @return array
@@ -42,7 +43,7 @@ final class FastIndexing
         foreach ($file as $line) {
             $this->postBody->setType('URL_UPDATED');
             $this->postBody->setUrl($line);
-            $batch->add($service->urlNotifications->publish($this->postBody));
+            $batch->add($this->service->urlNotifications->publish($this->postBody));
         }
 
         return $batch->execute();
