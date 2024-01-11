@@ -2,93 +2,49 @@
 
 namespace Dllpl\Google;
 
-use Firebase\JWT\JWT;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-
 final class FastIndexing
 {
-    /** @var Client  */
-    private Client $client;
+    /** @var \Google_Client  */
+    private \Google_Client $client;
 
-    /** @var string  */
-    private string $jwt;
+    /** @var \Google_Service_Indexing  */
+    private \Google_Service_Indexing $service;
+
+    /** @var \Google_Service_Indexing_UrlNotification  */
+    private \Google_Service_Indexing_UrlNotification $postBody;
 
     /**
-     * @param string $keyFile json файл из личного аккаунта разработчика Google
-     * @throws \Exception
+     * @param string $keyPath
+     * @throws \Google\Exception
      */
-    public function __construct(string $keyFile)
+    public function __construct(string $keyPath)
     {
-        $this->client = new Client();
-        return $this->jwt = $this->makeJWT($keyFile);
-    }
+        $this->client = new \Google_Client();
+        $this->client->setAuthConfig($keyPath);
+        $this->client->addScope('https://www.googleapis.com/auth/indexing');
+        $this->client->setUseBatch(true);
 
+        $this->service = new \Google_Service_Indexing($this->client);
+
+        $this->postBody = new \Google_Service_Indexing_UrlNotification();
+
+    }
     /**
      * @param string $batchFile
-     * @return string
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Exception
+     * @return array
      */
-    public function send(string $batchFile): string
+    public function send(string $batchFile): array
     {
-        $batch = explode("\n", file_get_contents($batchFile));
+        $file = file($batchFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-        $items = array_map(function ($line) {
-            return [
-                'Content-Type' => 'application/http',
-                'Content-ID' => '',
-                'body' =>
-                    "POST /v3/urlNotifications:publish HTTP/1.1\n" .
-                    "Content-Type: application/json\n\n" .
-                    json_encode([
-                        'url' => $line,
-                        'type' => 'URL_UPDATED'
-                    ])
-            ];
-        }, $batch);
+        $batch = $this->service->createBatch();
 
-        try {
-            $response = $this->client->request('POST', 'https://indexing.googleapis.com/batch', [
-                'headers' => [
-                    'Content-Type' => 'multipart/mixed',
-                    'Authorization' => 'Bearer ' . $this->jwt
-                ],
-                'json' => $items
-            ]);
-
-            return $response->getBody()->getContents();
-        } catch (ClientException $exception) {
-            return throw new \Exception([
-                'response' => $exception->getResponse()->getBody()->getContents(),
-                'exception' => $exception->getMessage()
-            ]);
+        foreach ($file as $line) {
+            $this->postBody->setType('URL_UPDATED');
+            $this->postBody->setUrl($line);
+            $batch->add($service->urlNotifications->publish($this->postBody));
         }
-    }
 
-    /**
-     * @param string $keyFile
-     * @return string
-     * @throws \Exception
-     */
-    private function makeJWT(string $keyFile): string
-    {
-        $key = json_decode(file_get_contents($keyFile), true);
-
-        if (isset($key['client_email'], $key['private_key'])) {
-            try {
-                return JWT::encode([
-                    'iss' => $key['client_email'],
-                    'scope' => 'https://www.googleapis.com/auth/indexing',
-                    'aud' => 'https://oauth2.googleapis.com/token',
-                    'exp' => time() + 3600,
-                    'iat' => time(),
-                ], $key['private_key'], 'RS256');
-            } catch (\Exception $exception) {
-                return throw new \Exception($exception->getMessage());
-            }
-        } else {
-            return throw new \Exception('Отсутствует обязательное поле client_email или private_key');
-        }
+        return $batch->execute();
     }
 }
