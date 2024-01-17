@@ -1,11 +1,12 @@
 # Google Fast Indexing PHP library
-*Библиотека для быстрой индексации сайта (страниц сайта) в поисковой выдаче Google. 
-Создано на основе библиотеки [google/apiclient](https://github.com/googleapis/google-api-php-client)*.
-*Подробное руководство от получения API-ключа Google до отправки url-адресов на индексацию доступно по [ссылке](https://webseed.ru/skript-na-php-dlya-uskorennoj-massovoj-indeksaczii-v-google/)*
 
 *Library for quick indexing of a site (site pages) in Google search results.
 Based on the library [google/apiclient](https://github.com/googleapis/google-api-php-client)*.
 *A detailed guide from obtaining a Google API key to submitting URLs for indexing is available at [link](https://webseed.ru/skript-na-php-dlya-uskorennoj-massovoj-indeksaczii-v-google/)*
+
+*Библиотека для быстрой индексации сайта (страниц сайта) в поисковой выдаче Google. 
+Создано на основе библиотеки [google/apiclient](https://github.com/googleapis/google-api-php-client)*.
+*Подробное руководство от получения API-ключа Google до отправки url-адресов на индексацию доступно по [ссылке](https://webseed.ru/skript-na-php-dlya-uskorennoj-massovoj-indeksaczii-v-google/)*
 
 ## Requirements (Требования)
 *  php: ^7.4 || ^8.0
