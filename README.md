@@ -24,9 +24,17 @@ $fastIndexing = new FastIndexing('service_account.json');
 
 // (en) path to the .txt file containing URLs to be sent for indexing
 // (ru) путь до .txt файла, содержащего url-адреса для отправки на индексацию
-$result = $fastIndexing->send('url.txt'); 
+$result = $fastIndexing->send('urls.txt'); 
 
 var_dump($result);
+```
+## Example file urls.txt (Пример файла)
+***Each URL is on a new line. It's important.***
+```text
+https://mydomain.com
+https://mydomain.com/all
+https://mydomain.com/pages
+...
 ```
 ## P.S.
 *Recently, Google has been very poorly and very slowly indexing website pages on its own,
