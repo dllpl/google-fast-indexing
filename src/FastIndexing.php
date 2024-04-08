@@ -4,13 +4,13 @@ namespace Dllpl\Google;
 
 final class FastIndexing
 {
-    /** @var \Google_Client  */
+    /** @var \Google_Client */
     private \Google_Client $client;
 
-    /** @var \Google_Service_Indexing  */
+    /** @var \Google_Service_Indexing */
     private \Google_Service_Indexing $service;
 
-    /** @var \Google_Service_Indexing_UrlNotification  */
+    /** @var \Google_Service_Indexing_UrlNotification */
     private \Google_Service_Indexing_UrlNotification $postBody;
 
     /**
@@ -39,13 +39,15 @@ final class FastIndexing
         $file = file($batchFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         $batch = $this->service->createBatch();
-
-        foreach ($file as $line) {
+        $responses = [];
+        foreach ($file as $key => $line) {
             $this->postBody->setType('URL_UPDATED');
             $this->postBody->setUrl($line);
             $batch->add($this->service->urlNotifications->publish($this->postBody));
+            $response = $batch->execute();
+            file_put_contents('response.log', 'Url--->' . $line . '---status--->' . $response['body'] . PHP_EOL, FILE_APPEND);
+            $responses[$key] = $response;
         }
-
-        return $batch->execute();
+        return $responses;
     }
 }
