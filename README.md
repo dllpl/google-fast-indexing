@@ -2,9 +2,9 @@
 
 *Library for quick indexing of a site (site pages) in Google search results.
 Based on the library [google/apiclient](https://github.com/googleapis/google-api-php-client)*.
-*A detailed guide from obtaining a Google API key to submitting URLs for indexing is available at [link](https://webseed.ru/skript-na-php-dlya-uskorennoj-massovoj-indeksaczii-v-google/)*
+*A detailed guide from obtaining a Google API key to submitting URLs for indexing is available at [link](https://support.google.com/googleapi/answer/6158862?hl=en)*
 
-*Библиотека для быстрой индексации сайта (страниц сайта) в поисковой выдаче Google. 
+*(ru) Библиотека для быстрой индексации сайта (страниц сайта) в поисковой выдаче Google. 
 Создано на основе библиотеки [google/apiclient](https://github.com/googleapis/google-api-php-client)*.
 *Подробное руководство от получения API-ключа Google до отправки url-адресов на индексацию доступно по [ссылке](https://webseed.ru/skript-na-php-dlya-uskorennoj-massovoj-indeksaczii-v-google/)*
 
@@ -41,7 +41,7 @@ https://mydomain.com/pages
 Based on this, there was a desire to implement this package for our own needs and for the needs of the entire GitHub community.
 Thank you for your stars! I invite you to take part in the development of this package.*
 
-*В последнее время Google очень плохо и совсем неспешно самостоятельно индексирует страницы сайта, 
+*(ru) В последнее время Google очень плохо и совсем неспешно самостоятельно индексирует страницы сайта, 
 исходя из этого возникло желание реализовать данный пакет для собственных нужд и для нужд всего GitHub-комьюнити. 
 Спасибо за ваши звезды! Приглашаю принять участие в развитие данного пакета.*
 
