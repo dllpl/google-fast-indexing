@@ -6,7 +6,7 @@ Based on the library [google/apiclient](https://github.com/googleapis/google-api
 
 *(ru) Библиотека для быстрой индексации сайта (страниц сайта) в поисковой выдаче Google. 
 Создано на основе библиотеки [google/apiclient](https://github.com/googleapis/google-api-php-client)*.
-*Подробное руководство от получения API-ключа Google до отправки url-адресов на индексацию доступно по [ссылке](https://webseed.ru/skript-na-php-dlya-uskorennoj-massovoj-indeksaczii-v-google/)*
+*Подробное руководство от получения API-ключа Google до отправки url-адресов на индексацию доступно по [ссылке](https://support.google.com/googleapi/answer/6158862?hl=en)*
 
 ## Requirements (Требования)
 *  php: ^7.4 || ^8.0
