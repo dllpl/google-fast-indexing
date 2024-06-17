@@ -1,6 +1,6 @@
 # Google Fast Indexing PHP library
 
-*Library for quick indexing of a site (site pages) in Google search results.
+*(en) Library for quick indexing of a site (site pages) in Google search results.
 Based on the library [google/apiclient](https://github.com/googleapis/google-api-php-client)*.
 *A detailed guide from obtaining a Google API key to submitting URLs for indexing is available at [link](https://support.google.com/googleapi/answer/6158862?hl=en)*
 
